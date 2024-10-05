@@ -79,39 +79,89 @@
     });
 
 
-    function login() {
+    // function login() {
 
+    //   var email = document.getElementById("email").value;
+    //   var password = document.getElementById("password").value;
+
+
+    //   console.log("in");
+
+    //   if (email == 'admin@gmail.com' && password == 'admin') {
+    //     window.location.href = "{{'/adminpage'}}";
+
+
+    //   } else {
+
+    //     $.ajax({
+    //       type: "POST",
+    //       dataType: "json",
+    //       data: {
+    //         email: email,
+    //         password: password
+    //       },
+    //       url: "/logindata",
+    //       success: function(data) {
+
+    //         window.location.href = "{{'/index'}}";
+
+    //         console.log(data);
+    //       },
+    //       error: function(xhr, status, error) {
+    //         console.log(xhr.responseText);
+    //       }
+    //     });
+
+    //   }
+    // }
+
+    async function hashPassword(password) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(password);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      return Array.from(new Uint8Array(hashBuffer))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+    }
+
+    async function login() {
       var email = document.getElementById("email").value;
       var password = document.getElementById("password").value;
 
-
       console.log("in");
-      
-      if (email == 'admin@gmail.com' && password == 'admin') {
+
+      // Regular expression for validating email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Validate email format
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return; // Exit the function if the email format is invalid
+      }
+
+      // Hash the password using SHA-256 before sending
+      var hashedPassword = await hashPassword(password);
+
+      // Hardcoded admin login check (for demonstration purposes)
+      if (email === 'admin@gmail.com' && hashedPassword === await hashPassword('admin')) {
         window.location.href = "{{'/adminpage'}}";
-
-
       } else {
-
         $.ajax({
           type: "POST",
           dataType: "json",
           data: {
             email: email,
-            password: password
+            password: hashedPassword // Send hashed password to the server
           },
           url: "/logindata",
           success: function(data) {
-
             window.location.href = "{{'/index'}}";
-
             console.log(data);
           },
           error: function(xhr, status, error) {
             console.log(xhr.responseText);
           }
         });
-
       }
     }
   </script>
