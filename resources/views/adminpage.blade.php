@@ -911,7 +911,7 @@
         });
 
         synopsisInput.addEventListener("change", () => {
-            movieData.synopsis
+            movieData.synopsis = synopsisInput.value;
         });
 
         imageInput.addEventListener("change", () => {
@@ -941,6 +941,7 @@
                     genres: movieData.genres,
                     synopsis: movieData.synopsis,
                     year: movieData.year,
+                    image: movieData.image,
 
                     _token: '{{ csrf_token() }}'
                 },
