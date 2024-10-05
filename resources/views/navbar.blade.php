@@ -410,13 +410,13 @@
         <a style="color:white;" class="nav-link  navlink" href="movies">Movies</a>
       </li>
 
-      <!-- <li class="nav-item">
+      <<li class="nav-item">
         <a style="color:white;" class="nav-link navlink" href="meme">MemeContest</a>
       </li>
 
       <li class="nav-item">
         <a style="color:white;" class="nav-link navlink" href="watchparty">WatchParty</a>
-      </li> -->
+      </li>
 
 
     </ul>
