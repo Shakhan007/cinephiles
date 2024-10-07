@@ -773,6 +773,8 @@
         <button id="set-button" style="padding:20px; font-size:larger; size:0in; border:solid 5px #4dbf00;">Set</button>
     </div>
 
+    
+
     <div style="border:solid 3px #4dbf00;" id="movie-div">
         <h1 style="color:aliceblue">Add Movie</h1>
         <hr>
