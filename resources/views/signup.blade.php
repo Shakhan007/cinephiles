@@ -92,38 +92,6 @@
       },
     });
 
-
-    // function signup() {
-
-    //   var typeFullName = document.getElementById("typeFullName").value;
-    //   var typeEmailX = document.getElementById("typeEmailX").value;
-    //   var typePasswordX = document.getElementById("typePasswordX").value;
-    //   var typeConfirmPassword = document.getElementById("typeConfirmPassword").value;
-
-    //   console.log("in");
-
-    //   $.ajax({
-    //     type: "POST",
-    //     dataType: "json",
-    //     data: {
-    //       typeFullName: typeFullName,
-    //       typeEmailX: typeEmailX,
-    //       typePasswordX: typePasswordX,
-    //       typeConfirmPassword: typeConfirmPassword
-
-    //     },
-    //     url: "/signupdata",
-    //     success: function(data) {
-    //       console.log(data);
-
-    //       window.location.href = "{{'/'}}";
-
-    //     },
-    //     error: function(xhr, status, error) {
-    //       console.log(xhr.responseText);
-    //     }
-    //   });
-    // }
     async function encryptPassword(password) {
       const encoder = new TextEncoder();
       const data = encoder.encode(password);
@@ -136,6 +104,15 @@
       var typeEmailX = document.getElementById("typeEmailX").value;
       var typePasswordX = document.getElementById("typePasswordX").value;
       var typeConfirmPassword = document.getElementById("typeConfirmPassword").value;
+
+      // Regular expression for validating email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Validate email format
+      if (!emailRegex.test(typeEmailX)) {
+        alert("Please enter a valid email address.");
+        return; // Exit the function if the email format is invalid
+      }
 
       // Encrypt the passwords
       var encryptedPassword = await encryptPassword(typePasswordX);
