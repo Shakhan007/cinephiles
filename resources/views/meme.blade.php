@@ -449,7 +449,7 @@
 
         console.log(newmin + ' ' + newsec + ' ' + hours);
 
-        if (dif <= 120 && dif >= 0) {
+        if (dif <= 300 && dif >= 0) {
 
           const h11 = document.getElementById("hidetitle");
           h11.style.display = "block";
